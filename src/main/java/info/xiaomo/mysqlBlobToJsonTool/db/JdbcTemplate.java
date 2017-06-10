@@ -1,9 +1,11 @@
 package info.xiaomo.mysqlBlobToJsonTool.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 把今天最好的表现当作明天最新的起点．．～
@@ -28,15 +30,15 @@ public class JdbcTemplate {
     public JdbcTemplate(String databaseName, String ip, String userName, String password) {
         try {
             //写入驱动所在处，打开驱动
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+//            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             //数据库，用户，密码，创建与具体数据库的连接
             conn = DriverManager.getConnection("jdbc:mysql://" + ip + ":3306/" + databaseName, userName, password);
             //创建执行sql语句的对象
             st = conn.createStatement();
 
         } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(null, "连接失败" + e.toString());
-
+            e.printStackTrace();
         }
 
     }
@@ -55,10 +57,44 @@ public class JdbcTemplate {
             }
             return result;
         } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(null, "查询失败" + e.toString());
-
+            e.printStackTrace();
             return null;
         }
+    }
+
+
+    public List<Object> queryList(String sql) {
+        PreparedStatement pstmt;
+        List<Object> ret = new ArrayList<>();
+        try {
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ret.add(rs.getString(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+
+    public ObservableList<String> queryTables(String dbName) {
+        PreparedStatement pstmt;
+        List<String> ret = new ArrayList<>();
+
+        try {
+            String sql = "Select Table_Name From Information_Schema.Tables Where Table_Schema = '" + dbName + "'";
+            System.out.println(sql);
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ret.add(rs.getString(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return FXCollections.observableArrayList(ret);
     }
 
     public int query(String sqlStatement) {
@@ -68,7 +104,7 @@ public class JdbcTemplate {
             this.close();
             return row;
         } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(null, "执行sql语句失败" + e.toString());
+            e.printStackTrace();
             this.close();
             return row;
         }
@@ -84,7 +120,7 @@ public class JdbcTemplate {
                 this.conn.close();
 
         } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(null, "关闭数据库连接失败" + e.toString());
+            e.printStackTrace();
         }
     }
 

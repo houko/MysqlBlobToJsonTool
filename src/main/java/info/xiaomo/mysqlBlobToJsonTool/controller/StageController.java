@@ -1,5 +1,6 @@
 package info.xiaomo.mysqlBlobToJsonTool.controller;
 
+import info.xiaomo.mysqlBlobToJsonTool.db.JdbcTemplate;
 import info.xiaomo.mysqlBlobToJsonTool.stage.ControlledStage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,6 +27,7 @@ import java.util.HashMap;
 public class StageController {
     //建立一个专门存储Stage的Map，全部用于存放Stage对象
     private HashMap<String, Stage> stages = new HashMap<>();
+    public static JdbcTemplate jdbcTemplate;
 
 
     /**
@@ -77,7 +79,6 @@ public class StageController {
             //通过Loader获取FXML对应的ViewCtr，并将本StageController注入到ViewCtr中
             ControlledStage controlledStage = loader.getController();
             controlledStage.setStageController(this);
-
             //构造对应的Stage
             Scene tempScene = new Scene(tempPane);
             Stage tempStage = new Stage();
@@ -102,7 +103,11 @@ public class StageController {
      * @param name 需要显示的窗口的名称
      */
     public void setStage(String name) {
-        this.getStage(name).show();
+        Stage stage = this.getStage(name);
+        if (!stage.isMaximized()) {
+            stage.setMaximized(true);
+        }
+        stage.show();
     }
 
 
@@ -113,10 +118,9 @@ public class StageController {
      * @param close 需要删除的窗口
      * @return
      */
-    public boolean setStage(String show, String close) {
+    public void setStage(String show, String close) {
         getStage(close).close();
         setStage(show);
-        return true;
     }
 
 

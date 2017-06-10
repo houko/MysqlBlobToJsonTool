@@ -21,14 +21,14 @@
     <children>
         <Pane prefHeight="540.0" prefWidth="494.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <children>
-                <TextField fx:id="ipStr" layoutX="199.0" layoutY="148.0" text="192.168.1.80"/>
-                <TextField fx:id="userStr" layoutX="199.0" layoutY="194.0" text="root"/>
-                <PasswordField fx:id="pwdStr" layoutX="199.0" layoutY="237.0" text="yscq2123."/>
-                <TextField fx:id="dbNameStr" layoutX="199.0" layoutY="289.0" text="yscq_game"/>
+                <TextField fx:id="ipStr" layoutX="199.0" layoutY="148.0" text="115.29.137.34"/>
+                <TextField fx:id="userStr" layoutX="199.0" layoutY="194.0" text="xiaomo"/>
+                <PasswordField fx:id="pwdStr" layoutX="199.0" layoutY="237.0" text="123456"/>
+                <TextField fx:id="dbNameStr" layoutX="199.0" layoutY="289.0" text="yscq2_game"/>
                 <Label layoutX="134.0" layoutY="153.0" text="地址"/>
                 <Label layoutX="134.0" layoutY="242.0" text="密码"/>
 
-                <Label layoutX="128.0" layoutY="294.0" text="端口"/>
+                <Label layoutX="128.0" layoutY="294.0" text="数据库"/>
                 <Button layoutX="170.0" layoutY="362.0" mnemonicParsing="false" onAction="#connectionButtonClicked"
                         text="连接"/>
                 <Button layoutX="282.0" layoutY="362.0" mnemonicParsing="false" text="清空"/>

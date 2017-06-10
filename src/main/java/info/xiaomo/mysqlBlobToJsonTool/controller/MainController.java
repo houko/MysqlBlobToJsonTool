@@ -1,7 +1,11 @@
 package info.xiaomo.mysqlBlobToJsonTool.controller;
 
 import info.xiaomo.mysqlBlobToJsonTool.stage.ControlledStage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,7 +26,12 @@ import java.util.ResourceBundle;
  */
 public class MainController implements ControlledStage, Initializable {
 
+    public ListView<String> tables;
+    public TextArea json;
+    public ListView<String> datas;
     private StageController myController;
+
+    ObservableList<String> data = FXCollections.observableArrayList("xiaomo");
 
     @Override
     public void setStageController(StageController stageController) {
@@ -31,6 +40,13 @@ public class MainController implements ControlledStage, Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        tables.setItems(data);
+        datas.setItems(data);
+        tables.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println(newValue);
+        });
+        datas.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            json.setText(String.valueOf(newValue));
+        });
     }
 }

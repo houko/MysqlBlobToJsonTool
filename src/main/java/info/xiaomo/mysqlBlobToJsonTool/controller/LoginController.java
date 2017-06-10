@@ -1,5 +1,6 @@
 package info.xiaomo.mysqlBlobToJsonTool.controller;
 
+import info.xiaomo.mysqlBlobToJsonTool.AppMain;
 import info.xiaomo.mysqlBlobToJsonTool.db.JdbcTemplate;
 import info.xiaomo.mysqlBlobToJsonTool.stage.ControlledStage;
 import javafx.fxml.FXML;
@@ -51,10 +52,10 @@ public class LoginController implements ControlledStage, Initializable {
 
     @FXML
     public void connectionButtonClicked() throws SQLException, ClassNotFoundException {
-        init();
-//        JdbcTemplate jdbcTemplate = new JdbcTemplate(dbName, ip, userName, password);
+        this.init();
+        StageController.jdbcTemplate = new JdbcTemplate(dbName, ip, userName, password);
+        AppMain.tables = StageController.jdbcTemplate.queryTables(dbName);
         goToMain();
-
     }
 
 
