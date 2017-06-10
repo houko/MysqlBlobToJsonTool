@@ -1,15 +1,17 @@
 package info.xiaomo.mysqlBlobToJsonTool.controller;
 
-import info.xiaomo.mysqlBlobToJsonTool.AppMain;
+import info.xiaomo.mysqlBlobToJsonTool.db.JdbcTemplate;
 import info.xiaomo.mysqlBlobToJsonTool.stage.ControlledStage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import static info.xiaomo.mysqlBlobToJsonTool.constant.StageIdConst.loginViewID;
+import static info.xiaomo.mysqlBlobToJsonTool.constant.StageIdConst.mainViewID;
 
 /**
  * 把今天最好的表现当作明天最新的起点．．～
@@ -28,25 +30,30 @@ import java.util.ResourceBundle;
 public class LoginController implements ControlledStage, Initializable {
 
     private StageController myController;
-    @FXML
-    public Button connectionButton;
+
     public TextField ipStr;
     public TextField pwdStr;
-    public TextField portStr;
+    public TextField dbNameStr;
     public TextField userStr;
 
+    private String ip;
+    private String userName;
+    private String password;
+    private String dbName;
+
+
+    private void init() {
+        this.ip = ipStr.getText();
+        this.userName = userStr.getText();
+        this.password = pwdStr.getText();
+        this.dbName = dbNameStr.getText();
+    }
 
     @FXML
     public void connectionButtonClicked() throws SQLException, ClassNotFoundException {
+        init();
+//        JdbcTemplate jdbcTemplate = new JdbcTemplate(dbName, ip, userName, password);
         goToMain();
-//        Class.forName("com.mysql.jdbc.Driver");
-//        Connection conn = DriverManager.getConnection(ipStr.getText(), userStr.getText(), pwdStr.getText());
-//        Statement statement = conn.createStatement();
-//        String sql = "show datatables";
-//        ResultSet rs = statement.executeQuery(sql);
-//        while (rs.next()) {
-//            System.out.println(rs.getString("name"));
-//        }
 
     }
 
@@ -62,6 +69,6 @@ public class LoginController implements ControlledStage, Initializable {
     }
 
     public void goToMain() {
-        myController.setStage(AppMain.mainViewID);
+        myController.setStage(mainViewID, loginViewID);
     }
 }

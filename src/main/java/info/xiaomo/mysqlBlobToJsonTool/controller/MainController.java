@@ -1,7 +1,6 @@
 package info.xiaomo.mysqlBlobToJsonTool.controller;
 
 import info.xiaomo.mysqlBlobToJsonTool.stage.ControlledStage;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
@@ -23,11 +22,7 @@ import java.util.ResourceBundle;
  */
 public class MainController implements ControlledStage, Initializable {
 
-
     private StageController myController;
-
-    public void connectionButtonClicked1(ActionEvent actionEvent) {
-    }
 
     @Override
     public void setStageController(StageController stageController) {

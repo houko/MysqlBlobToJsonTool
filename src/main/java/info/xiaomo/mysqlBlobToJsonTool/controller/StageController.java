@@ -67,9 +67,8 @@ public class StageController {
      * @param name      注册好的fxml窗口的文件
      * @param resources fxml资源地址
      * @param styles    可变参数，init使用的初始化样式资源设置
-     * @return 是否加载成功
      */
-    public boolean loadStage(String name, String resources, StageStyle... styles) {
+    public void loadStage(String name, String resources, StageStyle... styles) {
         try {
             //加载FXML资源文件
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resources));
@@ -92,10 +91,8 @@ public class StageController {
             //将设置好的Stage放到HashMap中
             this.addStage(name, tempStage);
 
-            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
     }
 
@@ -103,11 +100,9 @@ public class StageController {
      * 显示Stage但不隐藏任何Stage
      *
      * @param name 需要显示的窗口的名称
-     * @return 是否显示成功
      */
-    public boolean setStage(String name) {
+    public void setStage(String name) {
         this.getStage(name).show();
-        return true;
     }
 
 

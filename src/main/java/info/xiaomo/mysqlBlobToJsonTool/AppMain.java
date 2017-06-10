@@ -5,6 +5,11 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import static info.xiaomo.mysqlBlobToJsonTool.constant.StageIdConst.loginViewID;
+import static info.xiaomo.mysqlBlobToJsonTool.constant.StageIdConst.mainViewID;
+import static info.xiaomo.mysqlBlobToJsonTool.constant.StageRes.loginViewRes;
+import static info.xiaomo.mysqlBlobToJsonTool.constant.StageRes.mainViewRes;
+
 /**
  * 把今天最好的表现当作明天最新的起点．．～
  * いま 最高の表現 として 明日最新の始発．．～
@@ -21,11 +26,7 @@ import javafx.stage.StageStyle;
  */
 public class AppMain extends Application {
 
-    public static String mainViewID = "mainScene";
-    public static String mainViewRes = "../fxml/mainScene.fxml";
 
-    public static String loginViewID = "loginScene";
-    public static String loginViewRes = "../fxml/loginScene.fxml";
     private StageController stageController;
 
     @Override
