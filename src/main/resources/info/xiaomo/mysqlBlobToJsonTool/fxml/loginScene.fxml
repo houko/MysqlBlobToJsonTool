@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="CENTER" hgap="10" prefHeight="725.0" prefWidth="650.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="info.xiaomo.mysqlBlobToJsonTool.controller.LoginController">
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+    <columnConstraints>
+        <ColumnConstraints />
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <Pane prefHeight="540.0" prefWidth="494.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <children>
+                <TextField fx:id="ipStr" layoutX="199.0" layoutY="148.0" text="192.168.1.80" />
+                <TextField fx:id="userStr" layoutX="199.0" layoutY="194.0" text="root" />
+                <TextField fx:id="pwdStr" layoutX="199.0" layoutY="237.0" />
+                <TextField fx:id="portStr" layoutX="199.0" layoutY="289.0" text="3306" />
+                <Label layoutX="134.0" layoutY="153.0" text="地址" />
+                <Label layoutX="134.0" layoutY="242.0" text="密码" />
+
+                <Label layoutX="128.0" layoutY="294.0" text="端口" />
+                <Button fx:id="connectionButton" layoutX="170.0" layoutY="362.0" mnemonicParsing="false" onAction="#connectionButtonClicked" text="连接" />
+                <Button layoutX="282.0" layoutY="362.0" mnemonicParsing="false" text="清空" />
+                <Label layoutX="152.0" layoutY="116.0" text="mysql二进制转json工具">
+                    <font>
+                        <Font name="System Bold Italic" size="17.0" />
+                    </font>
+                </Label>
+                <Label layoutX="97.0" layoutY="445.0" text="sh-game.com  2017 All rights Resolved">
+                    <font>
+                        <Font name="System Bold Italic" size="17.0" />
+                    </font>
+                </Label>
+            <Label layoutX="134.0" layoutY="199.0" text="账号" />
+
+            </children>
+        </Pane>
+    </children>
+</GridPane>

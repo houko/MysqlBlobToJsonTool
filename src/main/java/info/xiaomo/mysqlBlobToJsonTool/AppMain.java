@@ -1,10 +1,9 @@
 package info.xiaomo.mysqlBlobToJsonTool;
 
+import info.xiaomo.mysqlBlobToJsonTool.controller.StageController;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * 把今天最好的表现当作明天最新的起点．．～
@@ -22,12 +21,28 @@ import javafx.stage.Stage;
  */
 public class AppMain extends Application {
 
+    public static String mainViewID = "mainScene";
+    public static String mainViewRes = "../fxml/mainScene.fxml";
+
+    public static String loginViewID = "loginScene";
+    public static String loginViewRes = "../fxml/loginScene.fxml";
+    private StageController stageController;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/mainScene.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
+
+        //新建一个StageController控制器
+        stageController = new StageController();
+
+        //将主舞台交给控制器处理
+        stageController.setPrimaryStage("primaryStage", primaryStage);
+
+        //加载两个舞台，每个界面一个舞台
+        stageController.loadStage(loginViewID, loginViewRes, StageStyle.UNDECORATED);
+        stageController.loadStage(mainViewID, mainViewRes);
+
+        //显示MainView舞台
+        stageController.setStage(loginViewID);
     }
 
 
