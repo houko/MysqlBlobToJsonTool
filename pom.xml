@@ -8,9 +8,6 @@
     <artifactId>MysqlBlobToJsonTool</artifactId>
     <packaging>pom</packaging>
     <version>1.0-alpha</version>
-    <modules>
-        <module>api</module>
-    </modules>
 
     <repositories>
         <repository>
@@ -79,7 +76,6 @@
 
 
     <!-- 相关依赖 -->
-    <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -147,9 +143,9 @@
                 <version>${springfox-swagger-ui.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.mortbay.jasper</groupId>
-                <artifactId>jasper-jsp</artifactId>
-                <version>${jsper.version}</version>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
@@ -172,7 +168,6 @@
                 <version>${poi.version}</version>
             </dependency>
         </dependencies>
-    </dependencyManagement>
 
     <build>
         <plugins>
