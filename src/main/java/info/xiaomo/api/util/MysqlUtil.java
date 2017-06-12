@@ -1,4 +1,4 @@
-package info.xiaomo.api.dao;
+package info.xiaomo.api.util;
 
 /**
  * 把今天最好的表现当作明天最新的起点．．～
@@ -10,11 +10,11 @@ package info.xiaomo.api.dao;
  * github: https://github.com/xiaomoinfo
  * email : xiaomo@xiamoo.info
  * QQ    : 83387856
- * Date  : 17/6/12 10:20
+ * Date  : 17/6/12 13:29
  * desc  :
  * Copyright(©) 2017 by xiaomo.
  */
-public interface TableDao {
+public class MysqlUtil {
 
 
 
