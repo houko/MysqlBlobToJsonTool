@@ -11,6 +11,15 @@
 
     <repositories>
         <repository>
+            <id>inner-release</id>
+            <name>inner-release</name>
+            <layout>default</layout>
+            <url>http://192.168.1.62:8081/nexus/content/repositories/releases/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
             <id>central</id>
             <name>aliyun maven</name>
             <layout>default</layout>
@@ -78,9 +87,25 @@
     <!-- 相关依赖 -->
         <dependencies>
             <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+            </dependency>
+            <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql-connector}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sh</groupId>
+                <artifactId>base-persist</artifactId>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>

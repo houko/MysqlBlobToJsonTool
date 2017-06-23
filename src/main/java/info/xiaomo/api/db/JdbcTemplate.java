@@ -1,5 +1,10 @@
 package info.xiaomo.api.db;
 
+import info.xiaomo.api.util.StringUtil;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,20 +29,14 @@ public class JdbcTemplate {
     private Statement st = null;
     private ResultSet rs = null;
 
-    public JdbcTemplate(String databaseName, String ip, String userName, String password) {
-        try {
-            //写入驱动所在处，打开驱动
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
+    public JdbcTemplate(String databaseName, String ip, String userName, String password) throws SQLException, ClassNotFoundException, IllegalAccessException, InstantiationException {
+        //写入驱动所在处，打开驱动
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
 //            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            //数据库，用户，密码，创建与具体数据库的连接
-            conn = DriverManager.getConnection("jdbc:mysql://" + ip + ":3306/" + databaseName, userName, password);
-            //创建执行sql语句的对象
-            st = conn.createStatement();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        //数据库，用户，密码，创建与具体数据库的连接
+        conn = DriverManager.getConnection("jdbc:mysql://" + ip + ":3306/" + databaseName, userName, password);
+        //创建执行sql语句的对象
+        st = conn.createStatement();
     }
 
     public String query(String sqlStatement, int n) {
@@ -94,6 +93,31 @@ public class JdbcTemplate {
         return ret;
     }
 
+
+    /**
+     * 根据表名查询数据
+     *
+     * @param tableName
+     * @return
+     */
+    public List<String> queryDataList(String tableName) {
+        PreparedStatement pstmt;
+        List<String> ret = new ArrayList<>();
+
+        try {
+            String sql = StringUtil.format("Select * From {0}", tableName);
+            System.out.println(sql);
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ret.add(rs.getString(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
     public int query(String sqlStatement) {
         int row = 0;
         try {
@@ -122,4 +146,24 @@ public class JdbcTemplate {
     }
 
 
+    public String queryData(String tableName, String id) {
+        PreparedStatement pstmt;
+        Blob ret = null;
+        try {
+            String sql = StringUtil.format("Select data From {0} where id = {1}", tableName, id);
+            System.out.println(sql);
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ret = rs.getBlob(1);
+            }
+            ByteArrayInputStream msgContent =(ByteArrayInputStream) ret.getBinaryStream();
+            byte[] byte_data = new byte[msgContent.available()];
+            msgContent.read(byte_data, 0,byte_data.length);
+            return new String(byte_data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

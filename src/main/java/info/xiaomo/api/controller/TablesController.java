@@ -1,5 +1,13 @@
 package info.xiaomo.api.controller;
 
+import info.xiaomo.api.db.JdbcTemplate;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * 把今天最好的表现当作明天最新的起点．．～
  * いま 最高の表現 として 明日最新の始発．．～
@@ -15,7 +23,78 @@ package info.xiaomo.api.controller;
  * Copyright(©) 2017 by xiaomo.
  */
 
+@RestController
 public class TablesController {
 
+    private static JdbcTemplate template;
+
+    private static String dbName;
+
+    private static boolean isLogin = false;
+
+    /**
+     * @param databaseName
+     * @param ip
+     * @param userName
+     * @param password
+     * @return
+     */
+    @RequestMapping("/login")
+    public boolean login(@RequestParam String databaseName, @RequestParam String ip, @RequestParam String userName, @RequestParam String password) {
+        try {
+            dbName = databaseName;
+            template = new JdbcTemplate(databaseName, ip, userName, password);
+        } catch (Exception e) {
+            return false;
+        }
+        isLogin = true;
+        return true;
+    }
+
+    /**
+     * 查询所有的表
+     *
+     * @return
+     */
+    @RequestMapping("/queryTables")
+    public List<String> queryTables() {
+        if (isLogin) {
+            return template.queryTables(dbName);
+        }
+        return null;
+    }
+
+
+    /**
+     * 查询所有的表
+     *
+     * @return
+     */
+    @RequestMapping("/queryDataList")
+    public List<String> queryDataList(@RequestParam String tableName) {
+        if (isLogin) {
+            return template.queryDataList(tableName);
+        }
+        return null;
+    }
+
+    /**
+     * 查询所有的表
+     *
+     * @return
+     */
+    @RequestMapping("/queryData")
+    public String queryDataList(@RequestParam String tableName,@RequestParam String id) {
+        if (isLogin) {
+            return template.queryData(tableName,id);
+        }
+        return null;
+    }
+
+
+//    public static void main(String[] args) {
+//        login("codex_game", "106.15.188.160", "codex_game", "xiaomo");
+//        System.out.println(JSON.toJSONString(queryTables()));
+//    }
 
 }
