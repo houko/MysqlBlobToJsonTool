@@ -18,13 +18,13 @@ import java.util.List;
  * desc  :
  * Copyright(©) 2017 by xiaomo.
  */
-public class JdbcUtil {
+public class JdbcTemplate {
 
     private Connection conn = null;
     private Statement st = null;
     private ResultSet rs = null;
 
-    public JdbcUtil(String databaseName, String ip, String userName, String password) {
+    public JdbcTemplate(String databaseName, String ip, String userName, String password) {
         try {
             //写入驱动所在处，打开驱动
             Class.forName("com.mysql.jdbc.Driver").newInstance();
