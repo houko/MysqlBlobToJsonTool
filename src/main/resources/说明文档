@@ -1,0 +1,21 @@
+登陆
+localhost:8080/login?databaseName=xxx&ip=xxx&userName=xxx&password=xxx
+返回 true/false
+
+登出
+localhost:8080/logout
+返回 true/false
+
+查询所有表
+localhost:8080/queryTables
+返回一个List<String>
+
+根据表名查询所有数据
+localhost:8080//queryDataList/{tableName}
+返回一个List<String>
+
+
+根据表名和id查询 具体数据
+localhost:8080//queryData/{tableName}/{id}
+返回一个String
+

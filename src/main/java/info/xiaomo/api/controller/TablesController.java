@@ -1,12 +1,12 @@
 package info.xiaomo.api.controller;
 
 import info.xiaomo.api.db.JdbcTemplate;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 把今天最好的表现当作明天最新的起点．．～
@@ -52,6 +52,17 @@ public class TablesController {
     }
 
     /**
+     * 登出
+     * @return
+     */
+    @RequestMapping("/logout")
+    public boolean logout() {
+        isLogin = false;
+        template = null;
+        return true;
+    }
+
+    /**
      * 查询所有的表
      *
      * @return
@@ -70,8 +81,8 @@ public class TablesController {
      *
      * @return
      */
-    @RequestMapping("/queryDataList")
-    public List<String> queryDataList(@RequestParam String tableName) {
+    @RequestMapping("/queryDataList/{tableName}")
+    public List<String> queryDataList(@PathVariable String tableName) {
         if (isLogin) {
             return template.queryDataList(tableName);
         }
@@ -83,10 +94,10 @@ public class TablesController {
      *
      * @return
      */
-    @RequestMapping("/queryData")
-    public String queryDataList(@RequestParam String tableName,@RequestParam String id) {
+    @RequestMapping("/queryData/{tableName}/{id}")
+    public String queryDataList(@PathVariable String tableName, @PathVariable String id) {
         if (isLogin) {
-            return template.queryData(tableName,id);
+            return template.queryData(tableName, id);
         }
         return null;
     }
