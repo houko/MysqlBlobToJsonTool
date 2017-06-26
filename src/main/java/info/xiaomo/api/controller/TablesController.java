@@ -27,11 +27,11 @@ import java.util.List;
 @RestController
 public class TablesController {
 
-    private static JdbcTemplate template;
+    private JdbcTemplate template;
 
-    private static String dbName;
+    private String dbName;
 
-    private static boolean isLogin = false;
+    private boolean isLogin = false;
 
     /**
      * @param databaseName
@@ -41,7 +41,11 @@ public class TablesController {
      * @return
      */
     @RequestMapping("/login")
-    public Result<Boolean> login(@RequestParam String databaseName, @RequestParam String ip, @RequestParam String userName, @RequestParam String password) {
+    public Result<Boolean> login(@RequestParam String databaseName,
+                                 @RequestParam String ip,
+                                 @RequestParam String userName,
+                                 @RequestParam String password
+    ) {
         try {
             dbName = databaseName;
             template = new JdbcTemplate(databaseName, ip, userName, password);
@@ -99,7 +103,8 @@ public class TablesController {
      * @return
      */
     @RequestMapping("/queryData/{tableName}/{id}")
-    public Result<String> queryDataList(@PathVariable String tableName, @PathVariable String id) {
+    public Result<String> queryDataList(@PathVariable String tableName,
+                                        @PathVariable String id) {
         if (isLogin) {
             String s = template.queryData(tableName, id);
             return new Result<>(s);

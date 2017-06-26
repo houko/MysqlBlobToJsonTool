@@ -3,8 +3,6 @@ package info.xiaomo.api.db;
 import info.xiaomo.api.util.StringUtil;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +30,7 @@ public class JdbcTemplate {
     public JdbcTemplate(String databaseName, String ip, String userName, String password) throws SQLException, ClassNotFoundException, IllegalAccessException, InstantiationException {
         //写入驱动所在处，打开驱动
         Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+        // Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
         //数据库，用户，密码，创建与具体数据库的连接
         conn = DriverManager.getConnection("jdbc:mysql://" + ip + ":3306/" + databaseName, userName, password);
         //创建执行sql语句的对象
@@ -78,9 +76,8 @@ public class JdbcTemplate {
     public List<String> queryTables(String dbName) {
         PreparedStatement pstmt;
         List<String> ret = new ArrayList<>();
-
         try {
-            String sql = "Select Table_Name From Information_Schema.Tables Where Table_Schema = '" + dbName + "'";
+            String sql = StringUtil.format("Select Table_Name From Information_Schema.Tables Where Table_Schema = {0}", dbName);
             System.out.println(sql);
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
