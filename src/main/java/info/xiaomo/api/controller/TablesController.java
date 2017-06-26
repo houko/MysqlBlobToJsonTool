@@ -1,5 +1,6 @@
 package info.xiaomo.api.controller;
 
+import info.xiaomo.api.base.Result;
 import info.xiaomo.api.db.JdbcTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,26 +41,27 @@ public class TablesController {
      * @return
      */
     @RequestMapping("/login")
-    public boolean login(@RequestParam String databaseName, @RequestParam String ip, @RequestParam String userName, @RequestParam String password) {
+    public Result<Boolean> login(@RequestParam String databaseName, @RequestParam String ip, @RequestParam String userName, @RequestParam String password) {
         try {
             dbName = databaseName;
             template = new JdbcTemplate(databaseName, ip, userName, password);
         } catch (Exception e) {
-            return false;
+            return new Result<>(false);
         }
         isLogin = true;
-        return true;
+        return new Result<>(true);
     }
 
     /**
      * 登出
+     *
      * @return
      */
     @RequestMapping("/logout")
-    public boolean logout() {
+    public Result<Boolean> logout() {
         isLogin = false;
         template = null;
-        return true;
+        return new Result<>(true);
     }
 
     /**
@@ -68,9 +70,10 @@ public class TablesController {
      * @return
      */
     @RequestMapping("/queryTables")
-    public List<String> queryTables() {
+    public Result<List<String>> queryTables() {
         if (isLogin) {
-            return template.queryTables(dbName);
+            List<String> strings = template.queryTables(dbName);
+            return new Result<>(strings);
         }
         return null;
     }
@@ -82,9 +85,10 @@ public class TablesController {
      * @return
      */
     @RequestMapping("/queryDataList/{tableName}")
-    public List<String> queryDataList(@PathVariable String tableName) {
+    public Result<List<String>> queryDataList(@PathVariable String tableName) {
         if (isLogin) {
-            return template.queryDataList(tableName);
+            List<String> strings = template.queryDataList(tableName);
+            return new Result<>(strings);
         }
         return null;
     }
@@ -95,9 +99,10 @@ public class TablesController {
      * @return
      */
     @RequestMapping("/queryData/{tableName}/{id}")
-    public String queryDataList(@PathVariable String tableName, @PathVariable String id) {
+    public Result<String> queryDataList(@PathVariable String tableName, @PathVariable String id) {
         if (isLogin) {
-            return template.queryData(tableName, id);
+            String s = template.queryData(tableName, id);
+            return new Result<>(s);
         }
         return null;
     }

@@ -1,21 +1,84 @@
 登陆
-localhost:9999/login?databaseName=xxx&ip=xxx&userName=xxx&password=xxx
+http://xiaomo.info:9999/login?databaseName=codex_game&ip=106.15.188.160&userName=codex_game&password=xiaomo
 返回 true/false
+
+{
+resultCode: 200,
+message: "SUCCESS",
+data: true
+}
 
 登出
-localhost:9999/logout
+http://xiaomo.info:9999/logout
 返回 true/false
 
+{
+resultCode: 200,
+message: "SUCCESS",
+data: true
+}
+
 查询所有表
-localhost:9999/queryTables
+http://xiaomo.info:9999/queryTables
 返回一个List<String>
 
 根据表名查询所有数据
 localhost:9999//queryDataList/{tableName}
+http://xiaomo.info:9999/queryDataList/p_bag
 返回一个List<String>
+
+{
+resultCode: 200,
+message: "SUCCESS",
+data: [
+"p_activity",
+"p_bag",
+"p_count",
+"p_role",
+"p_role_name",
+"p_skill",
+"p_task",
+"p_user",
+"s_data",
+"s_rank"
+]
+}
+
+{
+resultCode: 200,
+message: "SUCCESS",
+data: [
+"379665888577523",
+"379665889495028",
+"379665899128821",
+"379665900177398",
+"379665902012407",
+"379665907451896",
+"379665909614585",
+"379665920493562",
+"379665928620028",
+"379666417584115",
+"379666431477758",
+"379666616158211",
+"379666629462021",
+"379666642176007",
+"379667285739543",
+"379667423168519",
+"379677675096067"
+]
+}
 
 
 根据表名和id查询 具体数据
-localhost:9999//queryData/{tableName}/{id}
+localhost:9999/queryData/{tableName}/{id}
+http://xiaomo.info:9999/queryData/p_bag/379665888577523
 返回一个String
+
+{
+resultCode: 200,
+message: "SUCCESS",
+data: "��ݩV8 8(08@HPX`"
+}
+
+
 
