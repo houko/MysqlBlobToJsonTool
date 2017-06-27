@@ -1,0 +1,64 @@
+.box{
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  align-items:center;
+  width: 100%;
+  height: 100%;
+justify-content:center;
+background-color:#333;
+.content{
+background-color: #fff;
+border-radius: 6px;
+width: 80%;
+position: relative;
+text-align: center;
+padding: 10px 0 40px 0;
+transition: box-shadow 1s;
+-moz-transition: box-shadow 1s;	/* Firefox 4 */
+-webkit-transition: box-shadow 1s;	/* Safari 和 Chrome */
+-o-transition: box-shadow 1s;	/* Opera */
+max-width: 800px;
+&:hover{
+  box-shadow: 6px 6px 6px #111;
+}
+table{
+  margin: auto;
+  width: 80%;
+  max-width: 500px;
+td{
+  padding: 3px 0;
+  input{
+    width: 98%;
+    padding: 0 1%;
+    height: 30px;
+    font-size: 18px;
+    line-height: 30px;
+    outline: none;
+  }
+  
+}  
+}
+}
+button{
+  padding: 3px 30px;
+  font-size: 18px;
+  border-radius:4px;
+  color: #fff; 
+  border: 0;
+  margin-top: 20px;
+  outline: none;
+  cursor: pointer;
+}
+.commit{
+  background-color: #1a9fe0;
+  &:hover{
+    background-color: #1570a5;
+  }
+}
+.reset{
+  background-color: #fe781f;
+   &:hover{
+    background-color: #d66519;
+  }
+}
+}

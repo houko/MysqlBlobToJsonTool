@@ -1,0 +1,65 @@
+<div class="context">
+	<div class="left">
+		<app-box [tag]="'个人信息'">
+			<div class="userInfo">
+				<img class="cover" src="./../../assets/user.jpg" />
+				<table>
+					<tr>
+						<td>姓名</td>
+						<td>Alice</td>
+					</tr>
+					<tr>
+						<td>职业</td>
+						<td>前端开发</td>
+					</tr>
+					<tr>
+						<td>出生年月</td>
+						<td>1993.5</td>
+					</tr>
+					<tr>
+						<td>QQ</td>
+						<td>706654794</td>
+					</tr>
+					<tr>
+						<td>微信</td>
+						<td>ngzhuzhu520</td>
+					</tr>
+				</table>
+			</div>
+
+		</app-box>
+		<app-box [tag]="'热门标签'">
+
+			<div class="preloader loading" *ngIf="tagLoading">
+				<div></div>
+			</div>
+			<ul class="tags">
+				<li (click)="tagSearch(item)" [ngClass]="{'choose': hasSearch(item)}" *ngFor="let item of tagList">{{item.name}}</li>
+			</ul>
+            <div class="error" [ngClass]="{'showErr': showErr}">最多只能选五个标签！</div>
+			<button class="reset" *ngIf="tags.length>0" (click)="resetTag()">清空选中标签</button>
+		</app-box>
+		<app-box [tag]="'友情链接'">
+         <ul  class="friend">
+			 <li><a href="https://jermine.witdor.com" target="view_window">Jermine</a></li>
+			  <li><a href="http://xiaomo.info" target="view_window">小莫</a></li>
+		 </ul>
+		</app-box>
+	</div>
+	<div class="right">
+		
+		<div>
+			<input class="inputText" #input (focus)="onFocus($event)" [(ngModel)]="keywords" type="text" (keydown)="keywordSearch($event)"/>
+			<div class="resetSearch" *ngIf="keywords!=''" (click)="resetKey($event)">x</div>
+			<a class="serch" (click)="search()">搜索</a>
+		</div>
+		<div class="list">
+			<div class="preloader loading" *ngIf="articleLoading">
+			<div></div>
+		</div>
+			<app-articleList (click)="goArticleMore(item)" [article]="item" *ngFor="let item of articleList"></app-articleList>
+		</div>
+		<app-pagination [currentPage]="currentPage" [totalItems]="totalItems" [pageSize]="pageSize" (onPageChange)="onPageChange($event)"></app-pagination>
+
+	</div>
+</div>

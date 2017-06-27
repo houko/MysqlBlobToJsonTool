@@ -1,0 +1,17 @@
+<app-bar></app-bar>
+<div class="content">
+<div class="left" [ngClass]="{'hideLeft': !btnShow}">
+<div class="searchBox">
+<h3>搜索表名</h3>
+<div class="search">
+<input type="text" placeholder="请输入需要查找的表名"/>
+
+</div>
+
+    </div>
+    <div class="pushBtn" (click)="changBtnShow()">
+     <i class="icon iconfont" [ngClass]="{'icon-fanhui': btnShow, 'icon-gengduo': !btnShow}"></i>
+    </div>
+</div>
+<div class="right" [ngClass]="{'rightFull': !btnShow}"></div>
+</div>
