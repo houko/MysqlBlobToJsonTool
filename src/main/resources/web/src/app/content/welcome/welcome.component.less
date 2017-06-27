@@ -69,6 +69,15 @@ display: none;
           float: left;
           margin-right: 1%;
           overflow: auto;
+          &:nth-child(1){
+              width: 200px;
+          }
+          &:nth-child(2){
+              width: 200px;
+          }
+          &:nth-child(3){
+              width: e('calc(100% - 450px)');
+          }
       }
       ul{
           width: 90%;
@@ -89,7 +98,7 @@ display: none;
                   outline: none;
                   height: 20px;
                   line-height: 20px;
-                  font-size: 16px;
+                  font-size: 14px;
               }
           }
       }

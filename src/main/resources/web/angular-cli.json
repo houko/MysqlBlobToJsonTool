@@ -1,16 +1,16 @@
 {
   "project": {
-    "version": "1.0.0-alpha",
-    "name": "mysql-tool"
+    "version": "1.0.0-beta.28.3",
+    "name": "sassy-project"
   },
   "apps": [
     {
       "root": "src",
-      "outDir": "../",
+      "outDir": "dist",
       "assets": [
-        "assets",
-        "favicon.ico"
-      ],
+  "assets",
+  "favicon.ico"
+],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
@@ -25,17 +25,7 @@
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
-      },
-      
-  "map":{
-    "ng-select": "node_modules/ng-select"
-  },
-  "package" : {
-  "ng-select": {
-    "main": "index.js",
-    "defaultExtension": "js"
-  }
-}
+      }
     }
   ],
   "e2e": {
