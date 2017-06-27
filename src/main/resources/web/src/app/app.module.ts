@@ -3,12 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './content/welcome/welcome.component';
 import { BarComponent } from './component/bar/bar.component';
 import { PaginationComponent } from './component/pagination/pagination.component';
-import { MarkdownModule } from 'angular2-markdown';
 import { AppRoutingModule } from './app-routing.module';
 import { loginService } from './content/login/login.service';
 import { welcomeService } from './content/welcome/welcome.service';
@@ -27,7 +25,6 @@ import { LoginComponent } from './content/login/login.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MarkdownModule.forRoot(),
     AppRoutingModule
   ],
   providers: [

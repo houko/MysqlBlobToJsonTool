@@ -3,7 +3,6 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { welcomeService } from "./welcome.service";
-import _ from "underscore"
 @Component({
     selector: 'app-welcome',
     templateUrl: './welcome.component.html',

@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import { login } from './../../../config';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import axios from 'axios'
 @Injectable()
 
 export class loginService {
