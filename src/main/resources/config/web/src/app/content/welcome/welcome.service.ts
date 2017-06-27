@@ -1,43 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { blog } from './../../../config';
+import { list,login } from './../../../config';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import axios from 'axios'
 @Injectable()
 
-export class blogService {
-private tagsURL: string = blog.tags;
-private articlesURL: string = blog.articles;
-private viewURL: string = blog.view;
+export class welcomeService {
+private listURL: string = list.all;
+private logoutURL: string = login.logout;
+private listByTableURL: string = list.listByTable;
+private listByTableMoreURL: string = list.listByTableMore;
 
     constructor(private http: Http) { }
 
-getTagList(data: any): Observable<any> {
-        let headers = new Headers({ 'User-Name':'Alice' });
-        headers.append('Content-Type', 'application/json');
-        let options = new RequestOptions({ headers: headers });
-        return this.http.post(this.tagsURL, data, options)
+list(): Observable<any> {
+      
+        return this.http.get(this.listURL)
             .map(this.extractData)
             .catch(this.handleError);
     }
-    getView(data: any): Observable<any> {
-        let headers = new Headers({ 'User-Name':'Alice' });
-        headers.append('Content-Type', 'application/json');
-        let options = new RequestOptions({ headers: headers });
-        return this.http.post(this.viewURL, data, options)
+
+logout(): Observable<any> {
+        return this.http.get(this.logoutURL)
             .map(this.extractData)
             .catch(this.handleError);
     }
-getArticleList(data: any): Observable<any> {
-        let headers = new Headers({ 'User-Name':'Alice' });
-        headers.append('Content-Type', 'application/json');
-        let options = new RequestOptions({ headers: headers });
-        return this.http.post(this.articlesURL, data, options)
+    listByTable(data): Observable<any> {
+        return this.http.get(`${this.listByTableURL}/${data}`)
             .map(this.extractData)
             .catch(this.handleError);
-    }
+    } 
+    listByTableMore(data,id): Observable<any> {
+        return this.http.get(`${this.listByTableMoreURL}/${data}/${id}`)
+            .map(this.extractData)
+            .catch(this.handleError);
+    } 
     private extractData(res: Response) {
         let body = res.json();
         return body;

@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class BarComponent {
       constructor(private router: Router) { }
-   
+   @Output() logout = new EventEmitter<any>();
     ngOnInit() {
         
     }

@@ -1,8 +1,13 @@
 import { environment } from './environments/environment';
 // export const domainName = environment.production?'https://api.tusoapp.com':'https://api.dev.tusoapp.com';
-const domainName="https://b.daoapp.io";
-export const blog = {
-    tags:domainName+'/api/v1/tags/list',    
-    articles:domainName+'/api/v1/articles/list',
-    view:domainName+'/api/v1/articles/view',
+const domainName="http://xiaomo.info:9999";
+
+export const login = {
+    login:domainName+'/login',
+    logout:domainName+'/logout',
+}
+export const list = {
+    all:domainName+'/queryTables',
+    listByTable:domainName+'/queryDataList',
+    listByTableMore:domainName+'/queryData',
 }

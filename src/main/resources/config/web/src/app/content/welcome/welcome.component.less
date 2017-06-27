@@ -61,7 +61,38 @@ display: none;
       float: left;
       display: inline-block;
       height: 100%;
+      overflow: auto;
       width: e('calc(100% - 300px)');
+      .box{
+          width: 30%;
+          height: 100%;
+          float: left;
+          margin-right: 1%;
+          overflow: auto;
+      }
+      ul{
+          width: 90%;
+          margin:20px auto;
+          padding: 0;
+          li{
+              list-style: none;
+            //   display: inline-block;
+              padding: 3px 10px;
+              margin: 2px;
+              border: 1px solid #eee;
+              cursor: pointer;
+              &:hover{
+                  background-color: #ececec;
+              }
+              input{
+                  width: 100%;
+                  outline: none;
+                  height: 20px;
+                  line-height: 20px;
+                  font-size: 16px;
+              }
+          }
+      }
   }
   .rightFull{
       width: 100%;

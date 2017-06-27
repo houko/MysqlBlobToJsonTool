@@ -11,7 +11,8 @@ import { BarComponent } from './component/bar/bar.component';
 import { PaginationComponent } from './component/pagination/pagination.component';
 import { MarkdownModule } from 'angular2-markdown';
 import { AppRoutingModule } from './app-routing.module';
-import { blogService } from './content/blog/blog.service';
+import { loginService } from './content/login/login.service';
+import { welcomeService } from './content/welcome/welcome.service';
 import { LoginComponent } from './content/login/login.component';
 
 @NgModule({
@@ -31,8 +32,8 @@ import { LoginComponent } from './content/login/login.component';
     AppRoutingModule
   ],
   providers: [
-    blogService
-
+    loginService,
+    welcomeService
   ],
   bootstrap: [AppComponent]
 })
