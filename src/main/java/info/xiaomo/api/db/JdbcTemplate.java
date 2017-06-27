@@ -77,7 +77,7 @@ public class JdbcTemplate {
         PreparedStatement pstmt;
         List<String> ret = new ArrayList<>();
         try {
-            String sql = StringUtil.format("Select Table_Name From Information_Schema.Tables Where Table_Schema = {0}", dbName);
+            String sql = "Select Table_Name From Information_Schema.Tables Where Table_Schema = '" + dbName + "'";
             System.out.println(sql);
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
