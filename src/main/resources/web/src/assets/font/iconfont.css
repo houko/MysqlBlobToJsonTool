@@ -21,3 +21,27 @@
 
 .icon-sousuo-sousuo:before { content: "\e607"; }
 
+
+pre {
+  outline: 1px solid #ccc;
+  padding: 5px;
+  margin: 5px;
+  font-size: 20px;
+  line-height: 1.42857143;
+}
+.string {
+  color: green;
+}
+.number {
+  color: #64c9f2;
+}
+.boolean {
+  color: #f98280;
+}
+.null {
+  color: magenta;
+}
+.key {
+  color: #92278f;
+}
+

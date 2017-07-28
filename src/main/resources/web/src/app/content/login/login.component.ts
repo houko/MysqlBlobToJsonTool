@@ -11,9 +11,9 @@ import { loginService } from "./login.service"
 })
 
 export class LoginComponent {
-    databaseName="";
-    ip="";
-    userName="";
+    databaseName="game_codex_s1";
+    ip="192.168.5.69";
+    userName="root";
     password="";
     errorMassage="";
     loginBtn = true;

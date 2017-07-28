@@ -33,7 +33,7 @@
      <div class="box2">
         <ul >
             <li>具体数据</li>
-        <li *ngIf="alllistByTableMore!=''">{{alllistByTableMore}}</li>
+        <pre *ngIf="alllistByTableMore!=''" [innerHTML] = "alllistByTableMore" ></pre>
     </ul>
     </div>
 </div>
