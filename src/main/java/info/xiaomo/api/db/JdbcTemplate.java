@@ -2,11 +2,10 @@ package info.xiaomo.api.db;
 
 import com.sh.common.jdbc.SerializerUtil;
 import com.sh.common.persist.Cacheable;
-import com.sh.game.entity.Role;
+import com.sh.game.data.mysql.mapper.UserMapper;
 import com.sh.game.entity.User;
 import info.xiaomo.api.util.StringUtil;
 
-import java.io.ByteArrayInputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -149,7 +148,7 @@ public class JdbcTemplate {
     }
 
     @SuppressWarnings("unchecked")
-    public <T extends Cacheable> T queryData(String tableName,T entity, String id) {
+    public <T extends Cacheable> T queryData(String tableName, Class<T> clazz, String id) {
         PreparedStatement pstmt;
         byte[] ret = null;
         try {
@@ -160,7 +159,26 @@ public class JdbcTemplate {
             while (rs.next()) {
                 ret = rs.getBytes(1);
             }
-            return SerializerUtil.decode(ret, (Class<T>) entity.getClass());
+            return SerializerUtil.decode(ret, clazz);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    @SuppressWarnings("unchecked")
+    public User queryUser(String tableName, String id) {
+        PreparedStatement pstmt;
+        UserMapper mapper = new UserMapper();
+        try {
+            String sql = StringUtil.format("Select id, loginName, sid, pid, client, type, IDNumber, regTime From {0} where id = {1}", tableName, id);
+            System.out.println(sql);
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return mapper.mapping(rs);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

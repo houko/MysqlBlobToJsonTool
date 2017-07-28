@@ -1,7 +1,8 @@
 package info.xiaomo.api.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.sh.game.entity.Role;
+import com.sh.game.entity.*;
+import com.sh.game.entity.sys.SysData;
 import info.xiaomo.api.base.Result;
 import info.xiaomo.api.db.JdbcTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -106,13 +107,32 @@ public class TablesController {
      */
     @RequestMapping("/queryData/{tableName}/{id}")
     public Result<String> queryDataList(@PathVariable String tableName,
-                                        @PathVariable String id) {
+                                        @PathVariable final String id) {
         if (isLogin) {
-            if (tableName.equals("p_role")){
-                Role role = template.queryData(tableName,new Role(), id);
+            if (tableName.equals("p_role")) {
+                Role role = template.queryData(tableName, Role.class, id);
                 return new Result<>(JSON.toJSONString(role));
-            } else if (tableName.equals("p_user")){
-
+            } else if (tableName.equals("p_bag")) {
+                RoleBag bag = template.queryData(tableName, RoleBag.class, id);
+                return new Result<>(JSON.toJSONString(bag));
+            } else if (tableName.equals("p_activity")) {
+                User user = template.queryData(tableName, User.class, id);
+                return new Result<>(JSON.toJSONString(user));
+            } else if (tableName.equals("p_skill")) {
+                RoleSkill skill = template.queryData(tableName, RoleSkill.class, id);
+                return new Result<>(JSON.toJSONString(skill));
+            } else if (tableName.equals("s_data")) {
+                SysData sysData = template.queryData(tableName, SysData.class, id);
+                return new Result<>(JSON.toJSONString(sysData));
+            } else if (tableName.equals("s_rank")) { /// FIXME: 2017/7/28  now no rank
+                User user = template.queryData(tableName, User.class, id);
+                return new Result<>(JSON.toJSONString(user));
+            } else if (tableName.equals("s_union")) {
+                Union union = template.queryData(tableName, Union.class, id);
+                return new Result<>(JSON.toJSONString(union));
+            } else if (tableName.equals("p_user")) {
+                User user = template.queryUser(tableName, id);
+                return new Result<>(JSON.toJSONString(user));
             }
         }
         return null;
