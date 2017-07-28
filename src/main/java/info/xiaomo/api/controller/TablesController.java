@@ -1,8 +1,11 @@
 package info.xiaomo.api.controller;
 
 import com.sh.common.persist.Cacheable;
+import com.sh.commons.util.Cast;
 import com.sh.game.entity.*;
+import com.sh.game.entity.sys.GlobalCount;
 import com.sh.game.entity.sys.SysData;
+import com.sh.game.entity.sys.WorldStorage;
 import info.xiaomo.api.base.Result;
 import info.xiaomo.api.db.JdbcTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -123,8 +126,14 @@ public class TablesController {
                 RoleSkill skill = template.queryData(tableName, RoleSkill.class, id);
                 return new Result<>((T) skill);
             } else if (tableName.equals("s_data")) {
-                SysData sysData = template.queryData(tableName, SysData.class, id);
-                return new Result<>((T) sysData);
+                int dataId = Cast.toInteger(id);
+                if (dataId == SysData.COUNT) {
+                    GlobalCount globalCount = template.queryData(tableName, GlobalCount.class, id);
+                    return new Result<>((T) globalCount);
+                } else if (dataId == SysData.WORLD_STORAGE) {
+                    WorldStorage worldStorage = template.queryData(tableName, WorldStorage.class, id);
+                    return new Result<>((T) worldStorage);
+                }
             } else if (tableName.equals("s_rank")) { /// FIXME: 2017/7/28  now no rank
                 User user = template.queryData(tableName, User.class, id);
                 return new Result<>((T) user);
