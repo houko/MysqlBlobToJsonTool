@@ -1,5 +1,9 @@
 package info.xiaomo.api.db;
 
+import com.sh.common.jdbc.SerializerUtil;
+import com.sh.common.persist.Cacheable;
+import com.sh.game.entity.Role;
+import com.sh.game.entity.User;
 import info.xiaomo.api.util.StringUtil;
 
 import java.io.ByteArrayInputStream;
@@ -32,10 +36,12 @@ public class JdbcTemplate {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         // Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
         //数据库，用户，密码，创建与具体数据库的连接
-        conn = DriverManager.getConnection("jdbc:mysql://" + ip + ":3306/" + databaseName, userName, password);
+        String url = "jdbc:mysql://" + ip + ":3306/" + databaseName + "?characterEncoding=utf8&useSSL=false";
+        conn = DriverManager.getConnection(url, userName, password);
         //创建执行sql语句的对象
         st = conn.createStatement();
     }
+
 
     public String query(String sqlStatement, int n) {
         String result = "";
@@ -142,22 +148,19 @@ public class JdbcTemplate {
         }
     }
 
-
-    public String queryData(String tableName, String id) {
+    @SuppressWarnings("unchecked")
+    public <T extends Cacheable> T queryData(String tableName,T entity, String id) {
         PreparedStatement pstmt;
-        Blob ret = null;
+        byte[] ret = null;
         try {
             String sql = StringUtil.format("Select data From {0} where id = {1}", tableName, id);
             System.out.println(sql);
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                ret = rs.getBlob(1);
+                ret = rs.getBytes(1);
             }
-            ByteArrayInputStream msgContent =(ByteArrayInputStream) ret.getBinaryStream();
-            byte[] byte_data = new byte[msgContent.available()];
-            msgContent.read(byte_data, 0,byte_data.length);
-            return new String(byte_data);
+            return SerializerUtil.decode(ret, (Class<T>) entity.getClass());
         } catch (Exception e) {
             e.printStackTrace();
         }

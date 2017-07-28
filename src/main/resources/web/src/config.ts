@@ -1,6 +1,6 @@
 import { environment } from './environments/environment';
 // export const domainName = environment.production?'https://api.tusoapp.com':'https://api.dev.tusoapp.com';
-const domainName="http://xiaomo.info:9999";
+const domainName="http://localhost:9999";
 
 export const login = {
     login:domainName+'/login',

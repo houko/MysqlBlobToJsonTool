@@ -29,9 +29,6 @@ export class LoginComponent {
         } else if (this.userName == "") {
             this.errorMassage = "账号不得为空！";
              return false;
-        } else if (this.password == "") {
-            this.errorMassage = "密码不得为空！";
-             return false;
         } else if (this.databaseName == "") {
             this.errorMassage = "数据库不得为空！";
              return false;

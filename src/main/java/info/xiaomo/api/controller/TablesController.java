@@ -1,5 +1,7 @@
 package info.xiaomo.api.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.sh.game.entity.Role;
 import info.xiaomo.api.base.Result;
 import info.xiaomo.api.db.JdbcTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -98,7 +100,7 @@ public class TablesController {
     }
 
     /**
-     * 查询所有的表
+     * 查询表的数据
      *
      * @return
      */
@@ -106,8 +108,12 @@ public class TablesController {
     public Result<String> queryDataList(@PathVariable String tableName,
                                         @PathVariable String id) {
         if (isLogin) {
-            String s = template.queryData(tableName, id);
-            return new Result<>(s);
+            if (tableName.equals("p_role")){
+                Role role = template.queryData(tableName,new Role(), id);
+                return new Result<>(JSON.toJSONString(role));
+            } else if (tableName.equals("p_user")){
+
+            }
         }
         return null;
     }
