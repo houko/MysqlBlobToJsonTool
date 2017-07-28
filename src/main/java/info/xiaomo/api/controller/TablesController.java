@@ -8,6 +8,8 @@ import com.sh.game.entity.sys.SysData;
 import com.sh.game.entity.sys.WorldStorage;
 import info.xiaomo.api.base.Result;
 import info.xiaomo.api.db.JdbcTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +34,7 @@ import java.util.List;
 
 @RestController
 public class TablesController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(TablesController.class);
 
     private JdbcTemplate template;
 
@@ -56,6 +59,7 @@ public class TablesController {
             dbName = databaseName;
             template = new JdbcTemplate(databaseName, ip, userName, password);
         } catch (Exception e) {
+            LOGGER.error("连接失败: {}", e);
             return new Result<>(false);
         }
         isLogin = true;
