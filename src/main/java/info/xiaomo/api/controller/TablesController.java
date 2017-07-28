@@ -117,7 +117,7 @@ public class TablesController {
                 RoleBag bag = template.queryData(tableName, RoleBag.class, id);
                 return new Result<>((T) bag);
             } else if (tableName.equals("p_activity")) {
-                User user = template.queryData(tableName, User.class, id);
+                RoleActivity user = template.queryData(tableName, RoleActivity.class, id);
                 return new Result<>((T) user);
             } else if (tableName.equals("p_skill")) {
                 RoleSkill skill = template.queryData(tableName, RoleSkill.class, id);
@@ -131,6 +131,12 @@ public class TablesController {
             } else if (tableName.equals("s_union")) {
                 Union union = template.queryData(tableName, Union.class, id);
                 return new Result<>((T) union);
+            } else if (tableName.equals("p_count")) {
+                RoleCount count = template.queryData(tableName, RoleCount.class, id);
+                return new Result<>((T) count);
+            } else if (tableName.equals("p_task")) {
+                RoleTask roleTask = template.queryData(tableName, RoleTask.class, id);
+                return new Result<>((T) roleTask);
             } else if (tableName.equals("p_user")) {
                 User user = template.queryUser(tableName, id);
                 return new Result<>((T) user);
