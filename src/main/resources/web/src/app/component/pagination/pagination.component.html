@@ -1,0 +1,35 @@
+<div class="pagination">
+
+	<ul *ngIf="pageLength<=8">
+	<li  *ngIf="currentPage>1" (click)="onPageChange.emit(currentPage-1)"><<</li>
+	<li *ngFor="let item of totals" (click)="onPageChange.emit(item+1)" [ngClass]="{'choose': item+1==currentPage}">{{item+1}}</li>
+	<li *ngIf="currentPage<pageLength" (click)="onPageChange.emit(currentPage+1)">>></li>
+    </ul>
+	<ul *ngIf="pageLength>8&&currentPage>2&&currentPage<pageLength-1">
+	<li *ngIf="currentPage>1" (click)="onPageChange.emit(currentPage-1)"><<</li>
+	<li (click)="onPageChange.emit(1)" [ngClass]="{'choose': 1==currentPage}">1</li>
+	<li>...</li>
+	<li *ngFor="let item of totals" (click)="onPageChange.emit(item+1)" [ngClass]="{'choose': item+1==currentPage}">{{item+1}}</li>
+	<li>...</li>
+	<li (click)="onPageChange.emit(pageLength)" [ngClass]="{'choose': pageLength==currentPage}">{{pageLength}}</li>
+	<li *ngIf="currentPage<pageLength" (click)="onPageChange.emit(currentPage+1)">>></li>
+    </ul>
+	<ul *ngIf="pageLength>8&&currentPage<=2">
+	<li *ngIf="currentPage>1" (click)="onPageChange.emit(currentPage-1)"><<</li>
+	<li (click)="onPageChange.emit(1)" [ngClass]="{'choose': 1==currentPage}">1</li>
+	<li (click)="onPageChange.emit(2)" [ngClass]="{'choose': 2==currentPage}">2</li>
+	<li (click)="onPageChange.emit(3)" [ngClass]="{'choose': 3==currentPage}">3</li>
+	<li>...</li>
+	<li (click)="onPageChange.emit(pageLength)" [ngClass]="{'choose': pageLength==currentPage}">{{pageLength}}</li>
+	<li *ngIf="currentPage<pageLength" (click)="onPageChange.emit(currentPage+1)">>></li>
+    </ul>
+	<ul *ngIf="pageLength>8&&currentPage>=pageLength-1">
+	<li *ngIf="currentPage>1" (click)="onPageChange.emit(currentPage-1)"><<</li>
+	
+	<li>...</li>
+	<li (click)="onPageChange.emit(pageLength-2)" [ngClass]="{'choose': (pageLength-2)==currentPage}">{{pageLength-2}}</li>
+	<li (click)="onPageChange.emit(pageLength-1)" [ngClass]="{'choose': (pageLength-1)==currentPage}">{{pageLength-1}}</li>
+	<li (click)="onPageChange.emit(pageLength)" [ngClass]="{'choose': pageLength==currentPage}">{{pageLength}}</li>
+	<li *ngIf="currentPage<pageLength" (click)="onPageChange.emit(currentPage+1)">>></li>
+    </ul>
+</div>

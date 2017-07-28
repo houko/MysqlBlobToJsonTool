@@ -1,0 +1,41 @@
+<app-bar (logout)="logout()"></app-bar>
+<div class="content">
+<!--<div class="left" [ngClass]="{'hideLeft': !btnShow}">
+<div class="searchBox">
+<h3>搜索表名</h3>
+<div class="search">
+<input type="text" [(ngModel)]="keywords" (change)="filter()" placeholder="请输入需要查找的表名"/>
+</div>
+
+    </div>
+    <div class="pushBtn" (click)="changBtnShow()">
+     <i class="icon iconfont" [ngClass]="{'icon-fanhui': btnShow, 'icon-gengduo': !btnShow}"></i>
+    </div>
+</div>-->
+<div class="right rightFull" [ngClass]="{'rightFull': !btnShow}">
+    <div class="box">
+        <ul>
+          <li>表名</li>
+          <li><input type="text" [(ngModel)]="keywords" (keyup)="filter()" placeholder="请输入需要查找的表名"/></li>
+        <li *ngFor="let table of tableList" (click)="listByTable(table)">{{table}}</li>
+    </ul>
+     </div>
+    <div class="box">
+        <ul>
+            <li>数据</li>
+            <li>
+                <input type="text" [(ngModel)]="keywordsMore" (keyup)="filterByTable()" placeholder="请输入需要查找的数据"/>
+                
+            </li>
+        <li *ngFor="let table of listTable" (click)="listByTableMore(table)">{{table}}</li>
+    </ul>
+    </div>
+     <div class="box2">
+        <ul >
+            <li>具体数据</li>
+        <pre *ngIf="alllistByTableMore!=''" [innerHTML] = "alllistByTableMore" ></pre>
+    </ul>
+    </div>
+</div>
+</div>
+
