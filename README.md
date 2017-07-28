@@ -78,6 +78,7 @@ ORZ
 >  4. 公司坐标 杭州滨江，单休，966(游戏公司常态)，有偿加班。       
 
 
-# 公司产品信息
+# 六 公司产品信息
 [2017Q2网页游戏数据报告](http://www.youxiguancha.com/hangyezixun/40126.html)
+
 ![2017Q2网页游戏数据报告](srceenshot/company.png)
