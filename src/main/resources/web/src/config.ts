@@ -1,5 +1,5 @@
 // export const domainName = environment.production?'https://api.tusoapp.com':'https://api.dev.tusoapp.com';
-const domainName = 'http://localhost:9999';
+const domainName = 'http://localhost:99';
 
 export const login = {
     login: domainName + '/login',

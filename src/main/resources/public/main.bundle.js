@@ -866,7 +866,7 @@ var welcomeService = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return list; });
 // export const domainName = environment.production?'https://api.tusoapp.com':'https://api.dev.tusoapp.com';
-var domainName = 'http://localhost:9999';
+var domainName = 'http://localhost:99';
 var login = {
     login: domainName + '/login',
     logout: domainName + '/logout',
