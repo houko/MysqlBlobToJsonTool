@@ -134,7 +134,7 @@ public class TablesController {
                     WorldStorage worldStorage = template.queryData(tableName, WorldStorage.class, id);
                     return new Result<>((T) worldStorage);
                 }
-            } else if (tableName.equals("s_rank")) { /// FIXME: 2017/7/28  now no rank
+            } else if (tableName.equals("s_rank")) { /// FIXME: 2017/7/28  排行榜占位
                 User user = template.queryData(tableName, User.class, id);
                 return new Result<>((T) user);
             } else if (tableName.equals("s_union")) {
