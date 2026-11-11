@@ -5,6 +5,8 @@
 [![Maven Central](https://img.shields.io/maven-central/v/org.apache.maven/apache-maven.svg)]()
 [![GitHub followers](https://img.shields.io/github/followers/xiaomoinfo.svg?style=social&label=Follow)]()
 [![GitHub watchers](https://img.shields.io/github/watchers/xiaomoinfo/MysqlBlobToJsonTool.svg?style=social&label=Watch)]()
+[![X](https://img.shields.io/badge/X-%40suzukaze__haduki-000000?logo=x&logoColor=white)](https://x.com/suzukaze_haduki)
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/houko)
 # 一 开发此工具的缘由
 由于本人在游戏公司做java游戏服务端主程，使用的是mysql数据库，采用`protosbuf`序列化之后存入数据库，玩家上线的时候读取数据然后反序列化。
 因此造成了一个问题，因为数据都是二进制的，mysql客户端不能直接查看具体数据,虽然也有java的工具 通过http连接到游戏服查看玩家数据。但是每次查询操作都十分浪费时间。
